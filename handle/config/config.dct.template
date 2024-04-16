@@ -51,6 +51,7 @@
     "allow_list_hdls" = "$ALLOW_LIST_HDLS"
 
     storage_type = "$STORAGE_TYPE"
+    storage_class = "$STORAGE_CLASS"
 
     sql_settings = {
       sql_url = "$SQL_URL"

@@ -30,13 +30,15 @@ config = {
     'SERVER_PRIVATE_KEY_PEM': os.getenv('SERVER_PRIVATE_KEY_PEM', '').encode('ASCII'), # Explict convert to byte string
     'SERVER_PUBLIC_KEY_PEM': os.getenv('SERVER_PUBLIC_KEY_PEM', '').encode('ASCII'), # Explict convert to byte string
     'STORAGE_TYPE': os.getenv('STORAGE_TYPE', ''),
+    'STORAGE_CLASS': os.getenv('STORAGE_CLASS', ''),
     'SQL_URL': os.getenv('SQL_URL', ''),
     'SQL_DRIVER': os.getenv('SQL_DRIVER', 'org.mariadb.jdbc.Driver'),
     'SQL_LOGIN': os.getenv('SQL_LOGIN', 'root'),
     'SQL_PASSWD': os.getenv('SQL_PASSWD', ''),
     'SQL_READ_ONLY': os.getenv('SQL_READ_ONLY', 'no'),
     'ALLOW_NA_ADMINS': os.getenv('ALLOW_NA_ADMINS', 'yes'),
-    'TEMPLATE_NS_OVERRIDE': os.getenv('TEMPLATE_NS_OVERRIDE', 'no')
+    'TEMPLATE_NS_OVERRIDE': os.getenv('TEMPLATE_NS_OVERRIDE', 'no'),
+    'SERVER1_ENDPOINT': os.getenv('SERVER1_ENDPOINT', 'http://dspace.example.org/server')
 }
 
 # Create private / public keys based on config using hdl-convert-key tool
@@ -68,3 +70,5 @@ def generate_template(template, out_file, config):
 
 generate_template(os.path.join(CONFIG_DIR, 'config.dct.template'), os.path.join(OUT_DIR, 'config.dct'), config)
 generate_template(os.path.join(CONFIG_DIR, 'siteinfo.json.template'), os.path.join(OUT_DIR,'siteinfo.json'), config)
+generate_template(os.path.join(CONFIG_DIR, 'log4j-handle-plugin.properties.template'), os.path.join(OUT_DIR,'log4j-handle-plugin.properties'), config)
+generate_template(os.path.join(CONFIG_DIR, 'handle-dspace-plugin.cfg.template'), os.path.join(OUT_DIR,'handle-dspace-plugin.cfg'), config)
