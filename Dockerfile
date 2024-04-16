@@ -1,6 +1,6 @@
 
-FROM phusion/baseimage:jammy-1.0.1
-LABEL Name=handle_svr Version=0.0.2
+FROM phusion/baseimage:jammy-1.0.3
+LABEL Name=handle_server Version=1.0.0
 
 ## Image config
 
@@ -11,7 +11,7 @@ CMD ["/sbin/my_init"]
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
-RUN apt-get install -y ntp wget openjdk-11-jdk python3 mysql-client libmariadb-java
+RUN apt-get install -y git ntp wget openjdk-11-jdk python3 mysql-client libmariadb-java maven
 
 # Cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -27,6 +27,11 @@ RUN ln -s /usr/share/java/mariadb-java-client.jar /opt/handle/lib/mariadb-java-c
 
 # Copy over the handle base configs and build script
 COPY handle/ /home/handle/
+
+RUN git clone https://github.com/DSpace/Remote-Handle-Resolver.git /tmp/dspace-plugin
+WORKDIR /tmp/dspace-plugin
+RUN mvn clean package
+RUN cp /tmp/dspace-plugin/target/dspace-remote-handle-resolver-1.1-SNAPSHOT.jar /opt/handle/lib/
 
 # Create the working directory for the handle server that will run in the container
 RUN mkdir -p /var/handle/svr/logs
