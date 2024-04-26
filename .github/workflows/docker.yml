@@ -22,7 +22,7 @@ jobs:
   dspace-handle-server:
     # Ensure this job never runs on forked repos. It's only executed for 'kstatelibraries/docker-dspace-handle'
     if: github.repository == 'kstatelibraries/docker-dspace-handle'
-    uses: kstatelibrariesit/kstatelibrariesit/.github/workflows/reusable-docker-build.yml@main
+    uses: kstatelibraries/kstatelibraries/.github/workflows/reusable-docker-build.yml@main
     with:
       build_id: dspace-handle-server
       image_name: kstatelibraries/krex-dspace-handleserver
