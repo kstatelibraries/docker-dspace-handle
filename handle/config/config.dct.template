@@ -53,6 +53,10 @@
     storage_type = "$STORAGE_TYPE"
     storage_class = "$STORAGE_CLASS"
 
+    "http_config" = {
+       enable_trace = "no"
+    }
+
     sql_settings = {
       sql_url = "$SQL_URL"
       sql_driver = "$SQL_DRIVER"
