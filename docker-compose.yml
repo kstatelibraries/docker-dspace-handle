@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   handle_server:
     image: kstatelibraries/krex-dspace-handleserver
