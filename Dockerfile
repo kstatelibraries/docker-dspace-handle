@@ -44,8 +44,8 @@ RUN git clone --depth 1 --branch log4j https://github.com/misilot/Remote-Handle-
 
 FROM base AS handle_server
 
-COPY --from=build /home/handle /home/
-COPY --from=build /opt/handle /opt/
+COPY --from=build /home/handle /home/handle/
+COPY --from=build /opt/handle /opt/handle/
 
 # Create the working directory for the handle server that will run in the container
 RUN mkdir -p /var/handle/svr/logs
